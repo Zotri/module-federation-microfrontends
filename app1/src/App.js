@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { commerce } from "./lib/commerce";
 import Products from "./components/Products";
 import NavBar from "./components/navBar/NavBar";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const App = () => {
 	const [products, setProducts] = useState([]);
@@ -29,18 +29,16 @@ const App = () => {
 		fetchProducts();
 	}, []);
 
-	console.log("- - - cart - - -", cart);
-	console.log("- - - products api commerce - - -", products);
+	console.log("- - - cart app1- - -", cart);
+	console.log("- - - products api commerce app1- - -", products);
 	return (
 		<>
 			<Router>
 				<div>
 					<NavBar totalItems={cart.total_items} />
-					<Switch>
-						<Route exact path='/'>
-							<Products products={products} onCartClick={handleCartClick} />
-						</Route>
-					</Switch>
+					<Route exact path='/'>
+						<Products products={products} onCartClick={handleCartClick} />
+					</Route>
 				</div>
 				<h4>Module Federation 1 - app1 &#128151;</h4>
 			</Router>

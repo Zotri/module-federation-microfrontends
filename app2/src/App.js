@@ -1,47 +1,69 @@
-import React from 'react';
-import DatePicker from 'react-datepicker';
-import Button from '@bit/nsebhastian.design-system.button';
-import 'react-datepicker/dist/react-datepicker.css';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { commerce } from "./lib/commerce";
+import Cart from "./components/Cart";
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {startDate: '', endDate: ''};
-  }
+const App = () => {
+	const [cart, setCart] = useState({
+		line_items: [],
+		subtotal: {
+			formatted_with_symbol: ""
+		}
+	});
 
-  render() {
-    const {startDate, endDate} = this.state;
-    return (
-      <div className='container'>
-        <div className='column'>
-          <div className='column-header'>
-            <h2>Book the room</h2>
-          </div>
-          <div className='column-content'>
-            <form>
-              <div className='form-group'>
-                <label className='form-label'>Check-in date: </label>
-                <DatePicker
-                  selected={startDate}
-                  onChange={date => this.setState({startDate: date})}
-                />
-              </div>
-              <div className='form-group'>
-                <label className='form-label'>Check-out date: </label>
-                <DatePicker
-                  selected={endDate}
-                  onChange={date => this.setState({endDate: date})}
-                />
-              </div>
-            </form>
-          </div>
-          <Button
-            title='Book now'
-            onClick={() => alert('Book request received. Thank you!')}
-          />
-        </div>
-      </div>
-    );
-  }
-}
+	const fetchItemsFromCart = async () => {
+		setCart(await commerce.cart.retrieve());
+	};
+
+	const handleUpdateCartQuantity = async (productId, quantity) => {
+		//quantity in object because quantity one of the items that you want to update
+		const { cart } = await commerce.cart.update(productId, { quantity });
+
+		setCart(cart);
+		console.log("cart update", cart);
+	};
+
+	const hanldeRemoveFromCart = async (productId) => {
+		const { cart } = await commerce.cart.remove(productId);
+
+		setCart(cart);
+	};
+
+	const handleEmptyCart = async () => {
+		const { cart } = await commerce.cart.empty();
+
+		setCart(cart);
+	};
+
+	// const refreshCart = async () => {
+	// 	const newCart = await commerce.cart.refresh();
+
+	// 	setCart(newCart);
+	// };
+
+	useEffect(() => {
+		fetchItemsFromCart();
+	}, []);
+
+	console.log("- - - cart app2- - -", cart);
+
+	return (
+		<>
+			<Router>
+				<div>
+					<Route exact path='/'>
+						<Cart
+							cart={cart}
+							onUpdateCartQuantity={handleUpdateCartQuantity}
+							onRemoveFromCart={hanldeRemoveFromCart}
+							onEmptyCart={handleEmptyCart}
+						/>
+					</Route>
+				</div>
+				<h4>Module Federation 2 - app2 &#128151;</h4>
+			</Router>
+		</>
+	);
+};
+
+export default App;
