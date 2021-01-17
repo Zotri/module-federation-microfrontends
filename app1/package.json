@@ -37,6 +37,7 @@
         "@module-federation/automatic-vendor-federation": "^1.2.1",
         "directory-named-webpack-plugin": "^4.0.1",
         "dotenv": "^8.2.0",
+        "process": "^0.11.10",
         "react": "^16.13.0",
         "react-dom": "^16.13.0",
         "react-refresh-webpack-plugin": "^0.1.0",
