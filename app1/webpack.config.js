@@ -22,6 +22,7 @@ const dotenv = require("dotenv").config({
 
 module.exports = {
 	mode: "development",
+	devtool: "inline-source-map",
 	entry: "./src/index",
 	resolve: {
 		extensions: [".js", ".jsx", ".ts", ".tsx"]
@@ -34,17 +35,49 @@ module.exports = {
 			"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
 			"Access-Control-Allow-Headers":
 				"X-Requested-With, content-type, Authorization"
-		},
-		proxy: {
-			"api.chec.io": {
-				target: "https://api.chec.io/v1/products",
-				secure: true
-			}
 		}
+		// proxy: {
+		// 	"api.chec.io": {
+		// 		target: "https://api.chec.io/v1/products",
+		// 		secure: true
+		// 	}
+		// },
+		// before: function (app) {
+		// 	app.get("/api.chec.io", async function (req, res) {
+		// 		try {
+		// 			const queryURL = req.query.q;
+		// 			const resp = await fetch(queryURL);
+		// 			const body = await resp.text();
+		// 			res.send(body);
+		// 		} catch (e) {
+		// 			res.status(500);
+		// 			res.send(e);
+		// 		}
+		// 	});
+		// }
+		// setup(app) {
+		// 	var bodyParser = require("body-parser");
+		// 	app.use(bodyParser.json());
+
+		// 	app.get("/get/v1/products", function (req, res) {
+		// 		console.log(req);
+		// 		res.send("GET res sent from webpack dev server");
+		// 	});
+
+		// 	app.post("/post/v1/products", bodyParser.json(), function (req, res) {
+		// 		console.log(req.body);
+		// 		res.send("POST res sent from webpack dev server");
+		// 	});
+		// }
 		// https: true,
 		// stats: "errors-only",
 		// overlay: true,
 		// hot: true
+	},
+	performance: {
+		hints: false,
+		maxEntrypointSize: 512000,
+		maxAssetSize: 512000
 	},
 	output: {
 		publicPath: "http://localhost:3001/"
@@ -82,7 +115,9 @@ module.exports = {
 	plugins: [
 		new DefinePlugin({
 			"process.env.NODE_ENV": JSON.stringify("development"),
-			"process.env.REACT_APP_CHEC_PUBLIC_KEY": JSON.stringify("development")
+			"process.env.REACT_APP_CHEC_PUBLIC_KEY": JSON.stringify(
+				process.env.REACT_APP_CHEC_PUBLIC_KEY
+			)
 		}),
 		new ModuleFederationPlugin({
 			name: "app1",
