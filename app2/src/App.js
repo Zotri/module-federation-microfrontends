@@ -51,7 +51,7 @@ const App = () => {
 		<>
 			<Router>
 				<div>
-					<Route exact path='/'>
+					<Route path='/'>
 						<Cart
 							cart={cart}
 							onUpdateCartQuantity={handleUpdateCartQuantity}

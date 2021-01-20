@@ -46,7 +46,7 @@ const App = () => {
 		<>
 			<Router>
 				<div>
-					<Route exact path='/'>
+					<Route path='/'>
 						<Checkout
 							cart={cart}
 							order={order}
