@@ -3,9 +3,11 @@ import { lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const Products = React.lazy(() => import("app1/App"));
-//const ProductsRoutes = lazy(() => import("app1/routes"));
-const CartRoutes = lazy(() => import("app2/routes"));
-const CheckoutRoutes = lazy(() => import("app3/routes"));
+// const CartRoutes = lazy(() => import("app2/routes"));
+// const CheckoutRoutes = lazy(() => import("app3/routes"));
+
+const Cart = React.lazy(() => import("app2/App"));
+const Checkout = React.lazy(() => import("app3/App"));
 
 export default () => (
 	<Router>
@@ -15,10 +17,10 @@ export default () => (
 					<Products />
 				</Route>
 				<Route path='/cart' exact>
-					<CartRoutes />
+					<Cart />
 				</Route>
 				<Route path='/checkout' exact>
-					<CheckoutRoutes />
+					<Checkout />
 				</Route>
 			</Switch>
 		</React.Suspense>
