@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Checkout from "./components/checkoutForm/checkout/Checkout";
+import Checkout from "./components/Checkout";
 import { commerce } from "./lib/commerce";
 
 const App = () => {

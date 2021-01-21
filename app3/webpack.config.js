@@ -30,6 +30,8 @@ module.exports = {
 	devServer: {
 		contentBase: [path.join(__dirname, "dist"), path.join(__dirname, "assets")],
 		port: 3003,
+		hot: false,
+		hotOnly: false,
 		headers: {
 			"Access-Control-Allow-Origin": "*",
 			"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
@@ -87,11 +89,12 @@ module.exports = {
 		}),
 		new ModuleFederationPlugin({
 			name: "app3",
-			library: { type: "var", name: "app3" },
+			library: { type: "global", name: "app3" },
 			filename: "remoteEntry.js",
 			exposes: {
 				// expose each component
-				"./App": "./src/App"
+				"./App": "./src/App",
+				"./routes": "./src/routes.jsx"
 			},
 			shared: {
 				...automaticVendorFederation,
@@ -104,6 +107,11 @@ module.exports = {
 					eager: true,
 					singleton: true,
 					requiredVersion: packageJson.dependencies["react-dom"]
+				},
+				"react-router-dom": {
+					eager: true,
+					singleton: true,
+					requiredVersion: packageJson.dependencies["react-router-dom"]
 				}
 			}
 		}),

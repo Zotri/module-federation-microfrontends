@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import useStyles from "./styles";
+import useStyles from "./checkoutForm/styles";
 import {
 	Paper,
 	Stepper,
@@ -12,9 +12,9 @@ import {
 	CssBaseline
 } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
-import AddressForm from "../AddressForm";
-import PaymentForm from "../PaymentForm";
-import { commerce } from "../../../lib/commerce";
+import AddressForm from "./checkoutForm/AddressForm";
+import PaymentForm from "./checkoutForm/PaymentForm";
+import { commerce } from "../lib/commerce";
 
 const steps = ["Shipping address", "Payment details"];
 //purchasing process

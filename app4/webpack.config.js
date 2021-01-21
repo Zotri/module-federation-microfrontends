@@ -30,6 +30,7 @@ module.exports = {
 	devServer: {
 		contentBase: [path.join(__dirname, "dist"), path.join(__dirname, "assets")],
 		port: 3004,
+		historyApiFallback: true,
 		headers: {
 			"Access-Control-Allow-Origin": "*",
 			"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
@@ -87,7 +88,7 @@ module.exports = {
 		}),
 		new ModuleFederationPlugin({
 			name: "app4",
-			library: { type: "var", name: "app4" },
+			library: { type: "global", name: "app4" },
 			remotes: {
 				app1: "app1",
 				app2: "app2",
@@ -104,6 +105,11 @@ module.exports = {
 					eager: true,
 					singleton: true,
 					requiredVersion: packageJson.dependencies["react-dom"]
+				},
+				"react-router-dom": {
+					eager: true,
+					singleton: true,
+					requiredVersion: packageJson.dependencies["react-router-dom"]
 				}
 			}
 		}),
