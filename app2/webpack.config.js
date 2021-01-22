@@ -90,8 +90,7 @@ module.exports = {
 			filename: "remoteEntry.js",
 			exposes: {
 				// expose each component
-				"./App": "./src/App",
-				"./routes": "./src/routes.jsx"
+				"./App": "./src/App"
 			},
 			shared: {
 				...automaticVendorFederation,

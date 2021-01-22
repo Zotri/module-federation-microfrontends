@@ -1,11 +1,7 @@
 import React from "react";
-import { lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const Products = React.lazy(() => import("app1/App"));
-// const CartRoutes = lazy(() => import("app2/routes"));
-// const CheckoutRoutes = lazy(() => import("app3/routes"));
-
 const Cart = React.lazy(() => import("app2/App"));
 const Checkout = React.lazy(() => import("app3/App"));
 
