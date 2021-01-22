@@ -35,12 +35,6 @@ const App = () => {
 		setCart(cart);
 	};
 
-	// const refreshCart = async () => {
-	// 	const newCart = await commerce.cart.refresh();
-
-	// 	setCart(newCart);
-	// };
-
 	useEffect(() => {
 		fetchItemsFromCart();
 	}, []);
@@ -49,19 +43,15 @@ const App = () => {
 
 	return (
 		<>
-			<Router>
-				<div>
-					<Route path='/'>
-						<Cart
-							cart={cart}
-							onUpdateCartQuantity={handleUpdateCartQuantity}
-							onRemoveFromCart={hanldeRemoveFromCart}
-							onEmptyCart={handleEmptyCart}
-						/>
-					</Route>
-				</div>
-				<h4>Module Federation 2 - app2 &#128151;</h4>
-			</Router>
+			<div>
+				<Cart
+					cart={cart}
+					onUpdateCartQuantity={handleUpdateCartQuantity}
+					onRemoveFromCart={hanldeRemoveFromCart}
+					onEmptyCart={handleEmptyCart}
+				/>
+			</div>
+			<h4>Module Federation 2 - app2 &#128151;</h4>
 		</>
 	);
 };

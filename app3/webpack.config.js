@@ -30,8 +30,8 @@ module.exports = {
 	devServer: {
 		contentBase: [path.join(__dirname, "dist"), path.join(__dirname, "assets")],
 		port: 3003,
-		hot: false,
-		hotOnly: false,
+		hot: true,
+		historyApiFallback: true,
 		headers: {
 			"Access-Control-Allow-Origin": "*",
 			"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",

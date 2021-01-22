@@ -29,19 +29,14 @@ const App = () => {
 		fetchProducts();
 	}, []);
 
-	console.log("- - - cart app1- - -", cart);
 	console.log("- - - products api commerce app1- - -", products);
 	return (
 		<>
-			<Router>
-				<div>
-					<NavBar totalItems={cart.total_items} />
-					<Route exact path='/'>
-						<Products products={products} onCartClick={handleCartClick} />
-					</Route>
-				</div>
-				<h4>Module Federation 1 - app1 &#128151;</h4>
-			</Router>
+			<div>
+				<NavBar totalItems={cart.total_items} />
+				<Products products={products} onCartClick={handleCartClick} />
+			</div>
+			<h4>Module Federation 1 - app1 &#128151;</h4>
 		</>
 	);
 };

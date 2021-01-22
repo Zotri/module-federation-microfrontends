@@ -42,11 +42,13 @@ const App = () => {
 		fetchItemsFromCart();
 	}, []);
 
+	console.log("- - - checkout app3 - - -");
+
 	return (
 		<>
 			<Router>
 				<div>
-					<Route path='/'>
+					<Route>
 						<Checkout
 							cart={cart}
 							order={order}

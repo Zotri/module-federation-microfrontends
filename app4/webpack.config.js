@@ -30,6 +30,7 @@ module.exports = {
 	devServer: {
 		contentBase: [path.join(__dirname, "dist"), path.join(__dirname, "assets")],
 		port: 3004,
+		hot: true,
 		historyApiFallback: true,
 		headers: {
 			"Access-Control-Allow-Origin": "*",
@@ -37,7 +38,6 @@ module.exports = {
 			"Access-Control-Allow-Headers":
 				"X-Requested-With, content-type, Authorization"
 		}
-		// historyApiFallback: true
 	},
 	performance: {
 		hints: false,
