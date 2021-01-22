@@ -15,3 +15,7 @@ Run `npm install` and `npm start` inside each module respectively. This will bui
 - [localhost:3002](http://localhost:3002/)
 - [localhost:3003](http://localhost:3003/)
 - [localhost:3004](http://localhost:3004/)
+
+
+## Routing
+Rendering is based on server-side technique. Each module exposes its complete src/App but routing based at the container `app4`. 
