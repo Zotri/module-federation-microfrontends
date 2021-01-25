@@ -57,8 +57,8 @@ const App = () => {
 						/>
 					</Route>
 				</div>
-				<h4>Module Federation 3 - app3 &#128151;</h4>
 			</Router>
+			<h4>Module Federation 3 - app3 &#128151;</h4>
 		</>
 	);
 };

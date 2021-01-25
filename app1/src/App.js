@@ -3,6 +3,7 @@ import { commerce } from "./lib/commerce";
 import Products from "./components/Products";
 import NavBar from "./components/navBar/NavBar";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Switch } from "@material-ui/core";
 
 const App = () => {
 	const [products, setProducts] = useState([]);
